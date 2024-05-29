@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class NgxConsoleServiceService {
+export class NgxConsoleService {
   log(message: any, ...optionalParams: any[]) {
     console.log(message, ...optionalParams);
   }

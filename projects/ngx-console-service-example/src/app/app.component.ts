@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NgxConsoleServiceService } from '../../../ngx-console-service/src/public-api';
+import { NgxConsoleService } from '../../../ngx-console-service/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import { NgxConsoleServiceService } from '../../../ngx-console-service/src/publi
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  readonly console = inject(NgxConsoleServiceService);
+  readonly console = inject(NgxConsoleService);
   
   log() {
     this.console.log('log');
