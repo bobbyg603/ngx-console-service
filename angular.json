@@ -3,5 +3,132 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "ngx-console-service": {
+      "projectType": "library",
+      "root": "projects/ngx-console-service",
+      "sourceRoot": "projects/ngx-console-service/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngx-console-service/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-console-service/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-console-service/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/ngx-console-service/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-console-service-example": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/ngx-console-service-example",
+      "sourceRoot": "projects/ngx-console-service-example/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/ngx-console-service-example",
+            "index": "projects/ngx-console-service-example/src/index.html",
+            "browser": "projects/ngx-console-service-example/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/ngx-console-service-example/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/ngx-console-service-example/src/favicon.ico",
+              "projects/ngx-console-service-example/src/assets"
+            ],
+            "styles": [
+              "projects/ngx-console-service-example/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "ngx-console-service-example:build:production"
+            },
+            "development": {
+              "buildTarget": "ngx-console-service-example:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "ngx-console-service-example:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/ngx-console-service-example/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/ngx-console-service-example/src/favicon.ico",
+              "projects/ngx-console-service-example/src/assets"
+            ],
+            "styles": [
+              "projects/ngx-console-service-example/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
   }
 }
