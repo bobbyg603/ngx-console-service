@@ -1,17 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { NgxConsoleService } from '../../../ngx-console-service/src/public-api';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   readonly console = inject(NgxConsoleService);
-  
+
   log() {
     this.console.log('log');
   }
